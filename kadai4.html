@@ -24,8 +24,8 @@
             // 商品用のクラス定義
             class Item {
                 static number = 1;
-                constructor(name, price, stock) {
-                    this.id = Item.number;
+                constructor(id,name, price, stock) {
+                    this.id = id;
                     this.name = name;
                     this.price = price;
                     this.stock = stock;
@@ -53,6 +53,9 @@
                         // 購入による商品の在庫削減処理
                         
                         // 課題4-3. ここにコードを書く
+
+                        console.log("残りは"+this.stock+"個です");
+
                         // 在庫用のエレメントを抽出し、HTML内の個数を更新
                     } else console.log(this.name+"は商品の在庫がないため購入できません。");
                 }
@@ -69,14 +72,14 @@
             const btn = new Array(items.length);
 			
 			// ここから商品オブジェクトの生成
-			item_list[0] = new Item("緑茶",140,5);
-			item_list[1] = new Item("水",100,14);
-			item_list[2] = new Item("オレンジジュース",150,7);
-			item_list[3] = new Item("リンゴジュース",150,9);
-			item_list[4] = new Item("炭酸水",120,1);
-			item_list[5] = new Item("サイダー",160,3);
-			item_list[6] = new Item("コーヒー",170,8);
-			item_list[7] = new Item("紅茶",140,6);
+			item_list[0] = new Item(1,"緑茶",140,5);
+			item_list[1] = new Item(2,"水",100,14);
+			item_list[2] = new Item(3,"オレンジジュース",150,7);
+			item_list[3] = new Item(4,"リンゴジュース",150,9);
+			item_list[4] = new Item(5,"炭酸水",120,1);
+			item_list[5] = new Item(6,"サイダー",160,3);
+			item_list[6] = new Item(7,"コーヒー",170,8);
+			item_list[7] = new Item(8,"紅茶",140,6);
             // 商品表の作成
 			
 			for( let i = 0; i<items.length; i++)
@@ -84,11 +87,9 @@
 				var name = item_list[i].name ;
 				var price = String(item_list[i].price);
 				var stock = String(item_list[i].stock);
-				var itid = String(item_list[i].id);
-				var button_id = "button"+ itid;
+                var bid = 'button'+String(item_list[i].id)
 				
-				var str = "<tr><th>"+name+"</th><th>"+price+"</th><th>"+stock+"</th><th><button id=itid>購入</button></th></tr>";
-				
+				var str = "<tr><th>"+name+"</th><th>"+price+"</th><th>"+stock+"</th><th><button id="+bid+">購入</button></th></tr>";
 				itemArea.innerHTML += str;
 			}
 			
@@ -96,17 +97,21 @@
             // クリックイベント時の購入処理の設定
             for (let i=0; i<item_list.length; i++) 
 			{
-             
-				/*リスナーがないの気持ち悪すぎる
+                
+
+				
 				document.getElementById("button"+item_list[i].id).onclick = () => {
                     item_list[i].buyItem();
                 }
-				*/
-                const clickevent = document.getElementById("button"+item_list[i].id);
+				
+                
+                /*
+                const clickevent = document.getElementById("button");
 				clickevent.addEventListener('click', () => 
 				{
                     item_list[i].buyItem();
                 });
+                */
             }
             Item.showItemList(item_list);
 
