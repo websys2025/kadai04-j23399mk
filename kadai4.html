@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -35,10 +36,11 @@
                 static showItemList(list) {
                     console.log("商品は以下の" + Item.number + "種類です。");
 
-                    for( let i = 0; i<items.length - 1; i++)
+                    for( let i = 0; i<items.length; i++)
                     {
-                        console.log("商品番号:"+items[i].id+" 商品名:"+items[i].name+" 金額:"+items[i].price+" 在庫数:"+items[i].stock);
+                        console.log("商品番号:"+this.id+" 商品名:"+this.name+" 金額:"+this.price+" 在庫数:"+this.stock); //なぜかundefined
                     }
+					
                     console.log(""); // 空行の出力
                 }
                 
@@ -46,7 +48,7 @@
                 buyItem() {          
                     if (this.stock >= 1) { 
                         console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
-                        // 課題4-2. ここにコードを書く
+                        this.stock-- ;
                         // 購入による商品の在庫削減処理
                         
                         // 課題4-3. ここにコードを書く
@@ -62,10 +64,16 @@
             // 配列のオブジェクト作成
             const item_list = new Array(items.length);
             const btn = new Array(items.length);
-
-            // 課題4-1. ここにコード書く
-            // 商品オブジェクトの生成
-
+			
+			// ここから商品オブジェクトの生成
+			item_list[0] = new Item("緑茶",140,5);
+			item_list[1] = new Item("水",100,14);
+			item_list[2] = new Item("オレンジジュース",150,7);
+			item_list[3] = new Item("リンゴジュース",150,9);
+			item_list[4] = new Item("炭酸水",120,1);
+			item_list[5] = new Item("サイダー",160,3);
+			item_list[6] = new Item("コーヒー",170,8);
+			item_list[7] = new Item("紅茶",140,6);
             // 課題4-2. ここにコードを書く
             // 商品表の作成
 
