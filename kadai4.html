@@ -21,6 +21,8 @@
                 { id: 8, name: "紅茶", price: 140, stock: 6 }
             ]
 
+            var money = 3000;
+
             // 商品用のクラス定義
             class Item {
                 static number = 1;
@@ -46,18 +48,30 @@
                 }
                 
                 // 商品購入の関数
-                buyItem() {          
-                    if (this.stock >= 1) { 
-                        console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
-                        this.stock-- ;
-                        // 購入による商品の在庫削減処理
+                buyItem() {
+                    if (money>this.price)
+                    {          
+                        if (this.stock >= 1) { 
+                            console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
+                            this.stock-- ;
+
+                            money = money - this.price;
+                            // 購入による商品の在庫削減処理
                         
-                        // 課題4-3. ここにコードを書く
+                            // 課題4-3. ここにコードを書く
 
-                        console.log("残りは"+this.stock+"個です");
+                            console.log(this.name+"を購入しました。"+"残金は"+money+"です")
 
-                        // 在庫用のエレメントを抽出し、HTML内の個数を更新
-                    } else console.log(this.name+"は商品の在庫がないため購入できません。");
+                            console.log("残りは"+this.stock+"個です");
+
+                           
+
+                            // 在庫用のエレメントを抽出し、HTML内の個数を更新
+                        } else console.log(this.name+"は商品の在庫がないため購入できません。");
+                    }else
+                    {
+                        console.log("お財布すっからかんやのう")
+                    }
                 }
             } // End of Item class
 
