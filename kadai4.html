@@ -59,6 +59,8 @@
                             // 購入による商品の在庫削減処理
                         
                             // 課題4-3. ここにコードを書く
+							
+							
 
                             console.log(this.name+"を購入しました。"+"残金は"+money+"です")
 
@@ -67,6 +69,9 @@
                            
 
                             // 在庫用のエレメントを抽出し、HTML内の個数を更新
+							
+							document.getElementById("stock_" + this.id).innerText = this.stock;
+
                         } else console.log(this.name+"は商品の在庫がないため購入できません。");
                     }else
                     {
@@ -103,22 +108,8 @@
 				var stock = String(item_list[i].stock);
                 var bid = 'button'+String(item_list[i].id)
 				
-				var str = "<tr><th>"+name+"</th><th>"+price+"</th><th>"+stock+"</th><th><button id="+bid+">購入</button></th></tr>";
+				var str = "<tr><th>"+name+"</th><th>"+price+"</th><th id='stock_"+item_list[i].id+"'>"+stock+"</th><th><button id="+bid+">購入</button></th></tr>";
 				itemArea.innerHTML += str;
-			}
-
-			replace_html()
-			{
-				for( let i = 0; i<items.length; i++)
-				{
-					var name = item_list[i].name ;
-					var price = String(item_list[i].price);
-					var stock = String(item_list[i].stock);
-					var bid = 'button'+String(item_list[i].id)
-				
-					var str = "<tr><th>"+name+"</th><th>"+price+"</th><th>"+stock+"</th><th><button id="+bid+">購入</button></th></tr>";
-					itemArea.innerHTML += str;
-				}
 			}
 			
 
@@ -138,7 +129,6 @@
 				clickevent.addEventListener('click', () => 
 				{
                     item_list[i].buyItem();
-		    replace_html();
                 });
                 */
             }
